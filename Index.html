@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Dreams | Gourmet Order</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main id="app">
+        <section id="screen-menu" class="screen">
+            <header class="header-main">
+                <div class="logo-container">
+                    <img src="logo.png.png" alt="Sweet Dreams Logo" class="main-logo-img">
+                </div>
+            </header>
+
+            <div class="layout-grid">
+                <div class="menu-side">
+                    <h2 class="section-title">Nossas Delícias</h2>
+
+                    <article class="card menau-card">
+                        <div class="card-img">🎂</div>
+                        <div class="card-info">
+                            <div class="item-row"><span>Roll cake</span> <b> $20</b>
+                                <div class="btns"><button onclick="remover('Roll cake')">-</button><button class="plus"
+                                        onclick="adicionar('Roll cake',  20)">+</button></div>
+                            </div>
+                            <div class="item-row"><span>Strawberry cake</span> <b> $50</b>
+                                <div class="btns"><button onclick="remover('Strawberry cake')">-</button><button
+                                        class="plus" onclick="adicionar('Strawberry cake',  50)">+</button></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card menu-card reverse">
+                        <div class="card-img">🥤</div>
+                        <div class="card-info">
+                            <div class="item-row"><span>Berry Smoothie</span> <b> $15</b>
+                                <div class="btns"><button onclick="remover('Berry Smoothie')">-</button><button
+                                        class="plus" onclick="adicionar('Berry Smoothie', 15)">+</button></div>
+                            </div>
+                            <div class="item-row"><span>Tropical Mix</span> <b> $18</b>
+                                <div class="btns"><button onclick="remover('Tropical Mix')">-</button><button
+                                        class="plus" onclick="adicionar('Tropical Mix',  18)">+</button></div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <aside class="cart-side">
+                  <div class="cart-box">
+    <h3 class="title-cursive">Seu pedido</h3>
+    <div id="cart-list" class="cart-list">
+        <p class="empty-msg">Selecione um doce!</p>
+    </div>
+    
+    <div class="coupon-section">
+        <input type="text" id="coupon-input" placeholder="Cupom de desconto" class="styled-input">
+        <button onclick="aplicarCupom()" class="btn-secondary">Aplicar</button>
+        <p id="coupon-msg" style="font-size: 0.7rem; margin-top: 5px; font-weight: 900;"></p>
+    </div>
+
+    <div class="cart-footer">
+        <div class="total-line"><span>Subtotal:</span> <span id="subtotal-price">$ 0</span></div>
+        <div class="total-line" id="discount-row" style="display:none; color: #ff4757;">
+            <span>Desconto:</span> <span id="discount-val">-$ 0</span>
+        </div>
+        <div class="total-line main-total"><span>Total:</span> <span id="total-price">$ 0</span></div>
+                            <button class="btn-main pulse-effect" onclick="mudarTela('screen-payment')">FECHAR PEDIDO</button>
+                        </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="screen-payment" class="screen hidden">
+    <div class="payment-modal">
+        <h2 class="title-cursive-dark">Finalização</h2>
+        
+        <div class="total-display">
+            <label class="display-label">VALOR TOTAL</label>
+            <div id="final-price" class="price-val">$ 0.00</div>
+        </div>
+
+        <div class="address-section">
+            <label class="pay-label">ONDE ENTREGAMOS?</label>
+            <input type="text" id="cust-name" placeholder="Seu Nome Completo" class="styled-input">
+            <input type="text" id="cust-address" placeholder="Rua e Número" class="styled-input">
+            <input type="text" id="cust-city" placeholder="Bairro / Complemento" class="styled-input">
+            
+            <label class="pay-label">OBSERVAÇÕES DO PEDIDO:</label>
+            <textarea id="cust-obs" placeholder="Ex: Sem cebola, trocar por tal item, ponto da carne..." class="styled-input" rows="3"></textarea>
+        </div>
+
+        <div class="pay-methods-container">
+            <label class="pay-label">FORMA DE PAGAMENTO:</label>
+            <select id="pay-method" class="styled-select">
+                <option value="Pix">✨ PIX (5% OFF)</option>
+                <option value="Cartão">💳 Cartão de Crédito/Débito</option>
+                <option value="Dinheiro">💵 Dinheiro</option>
+            </select>
+        </div>
+
+        <div class="action-footer">
+            <button class="btn-back-link" onclick="mudarTela('screen-menu')">← Voltar</button>
+            <button class="btn-main" onclick="finalizarPedido()">CONFIRMAR E ENVIAR WHATSAPP</button>
+        </div>
+    </div>
+</section>
+        <section id="screen-thanks" class="screen hidden">
+            <div class="receipt-container">
+                <div class="success-icon-circle"><span class="check-mark">✓</span></div>
+                <div class="receipt-paper">
+                    <h2 class="logo-cursive-dark">Muito obrigado!</h2>
+                    <p class="receipt-subtitle">Seu pedido foi confirmado</p>
+                    <div class="receipt-divider"></div>
+                    <div id="receipt-content" class="receipt-items-list"></div>
+                    <div class="receipt-divider"></div>
+                    <div class="receipt-final-row">
+                        <span>TOTAL PAGO</span>
+                        <span id="receipt-total" class="total-bold"></span>
+                    </div>
+                    <div class="barcode">|| ||| | |||| | || | |||</div>
+                </div>
+                <p class="auto-return-text">Retornando em <span id="timer">5</span>s...</p>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>📍 Av. Dos Doces, 123 - Candy Hill</p>
+                    <p>📞 (11) 9999-9999</p>
+                </div>
+                <div class="footer-social">
+                    <span>@SweetDreamsGourmet</span>
+                </div>
+                <p class="copyright">© 2024 Sweet Dreams. Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

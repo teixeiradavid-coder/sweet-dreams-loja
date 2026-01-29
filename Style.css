@@ -1,0 +1,410 @@
+:root {
+    --p-main: #8c52ff;
+    --p-light: #b392ff;
+    --p-dark: #5e17eb;
+    --white: #ffffff;
+    --gray: #f3f4f6;
+}
+
+* {
+    box-sizing: border-box;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #d1d5db;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#app {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--p-main);
+    background-image: repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.05) 20px, rgba(255, 255, 255, 0.05) 40px);
+    border-left: clamp(10px, 3vw, 30px) solid var(--p-light);
+    border-right: clamp(10px, 3vw, 30px) solid var(--p-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.screen {
+    width: 100%;
+    max-width: 1100px;
+    padding: 20px;
+    flex: 1;
+}
+
+/* LOGO */
+.logo-container {
+    text-align: left;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: left;
+}
+
+.main-logo-img {
+    width: 250px;
+    height: auto;
+    filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.3)) drop-shadow(8px 8px 0px var(--p-dark));
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* LAYOUT */
+.layout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 850px) {
+    .layout-grid {
+        grid-template-columns: 1fr 380px;
+    }
+}
+
+.card {
+    background: white;
+    border-radius: 25px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 8px 8px 0px var(--p-dark);
+}
+
+.card.reverse {
+    flex-direction: row-reverse;
+}
+
+.card-img {
+    font-size: 2.5rem;
+    background: var(--gray);
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    font-weight: 900;
+    color: var(--p-dark);
+}
+
+.btns {
+    display: flex;
+    gap: 5px;
+}
+
+.btns button {
+    border: none;
+    border-radius: 8px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-weight: 900;
+    background: var(--gray);
+    color: var(--p-main);
+}
+
+.btns button.plus {
+    background: var(--p-main);
+    color: white;
+}
+
+.btns button:active {
+    transform: scale(0.9);
+}
+
+/* CARRINHO */
+.cart-box {
+    background: white;
+    border-radius: 30px;
+    padding: 25px;
+    position: sticky;
+    top: 20px;
+    box-shadow: 10px 10px 0px var(--p-dark);
+}
+
+.title-cursive {
+    font-family: 'Dancing Script', cursive;
+    color: var(--p-main);
+    font-size: 2.5rem;
+    margin: 0 0 15px 0;
+    text-align: center;
+}
+
+.cart-list {
+    min-height: 150px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.btn-main {
+    width: 100%;
+    background: var(--p-main);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 50px;
+    font-weight: 900;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 5px 0 var(--p-dark);
+}
+
+.btn-main:hover {
+    background: var(--p-dark);
+    transform: translateY(-2px);
+}
+
+/* CARRINHO */
+.cart-box {
+    background: white;
+    border-radius: 30px;
+    padding: 25px;
+    position: sticky;
+    top: 20px;
+    box-shadow: 10px 10px 0px var(--p-dark);
+}
+
+.cart-list {
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.total-line {
+    display: flex;
+    justify-content: space-between;
+    color: var(--p-dark);
+    font-weight: 900;
+    padding: 5px 0;
+}
+
+.main-total {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    border-top: 2px solid var(--gray);
+    padding-top: 10px;
+}
+
+.btn-main {
+    width: 100%;
+    background: var(--p-main);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 50px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 5px 0 var(--p-dark);
+}
+
+/* TELA PAGAMENTO */
+.payment-modal {
+    background: white;
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 40px;
+    border-radius: 35px;
+    box-shadow: 15px 15px 0px var(--p-dark);
+    text-align: center;
+    border: 3px solid var(--p-dark);
+}
+
+.price-val {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--p-main);
+}
+
+.styled-select {
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid var(--gray);
+    background: var(--gray);
+    font-weight: 700;
+}
+
+.btn-back-link {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+/* TELA RECIBO */
+.receipt-paper {
+    background: white;
+    padding: 50px 30px 30px;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.receipt-paper::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(-135deg, white 8px, transparent 0), linear-gradient(135deg, white 8px, transparent 0);
+    background-size: 16px 16px;
+}
+
+.success-icon-circle {
+    width: 60px;
+    height: 60px;
+    background: #4ade80;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto -30px;
+    position: relative;
+    z-index: 5;
+    color: white;
+    font-weight: bold;
+}
+
+/* RODAPÉ (FOOTER) */
+.site-footer {
+    width: 100%;
+    background-color: var(--p-dark);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer-info p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.footer-social {
+    margin: 15px 0;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+}
+
+.copyright {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none !important;
+}/* Adicione isso ao seu CSS atual */
+.styled-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    border: 2px solid var(--gray);
+    background: var(--gray);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    outline: none;
+}
+
+.styled-input:focus {
+    border-color: var(--p-main);
+    background: white;
+}
+
+.pay-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: var(--p-dark);
+    margin-bottom: 8px;
+}
+
+.receipt-info-block {
+    text-align: left;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.receipt-info-block b {
+    color: var(--p-dark);
+}
+
+/* Forçar alinhamento à esquerda removendo o reverse */
+.card.menu-card {
+    flex-direction: row !important;
+}.coupon-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    border-top: 1px solid var(--gray);
+    padding-top: 15px;
+}
+
+.coupon-section .styled-input {
+    margin-bottom: 0;
+    padding: 8px;
+}
+
+.btn-secondary {
+    background: var(--p-dark);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0 15px;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+#coupon-msg.success { color: #2ed573; }
+#coupon-msg.error { color: #ff4757; }
